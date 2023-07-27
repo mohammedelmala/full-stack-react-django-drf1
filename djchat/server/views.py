@@ -5,6 +5,7 @@ from rest_framework.exceptions import AuthenticationFailed, ValidationError
 from rest_framework.response import Response
 
 from .models import Server
+from .schema import server_list_docs
 from .serializers import ServerSerializer
 
 
@@ -12,7 +13,7 @@ from .serializers import ServerSerializer
 class ServerListViewSet(viewsets.ViewSet):
     queryset = Server.objects.all()
     # serializer_class = ServerSerializer
-
+    @server_list_docs
     def list(self, request):
         category = request.query_params.get("category")
         by_user = request.query_params.get("by_user")== "true"
